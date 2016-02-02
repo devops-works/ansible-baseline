@@ -52,6 +52,8 @@
     src: 10_prompt.bash.j2
     dest: "{{'~' + item.name }}/.bash.d/10_prompt.bash"
     mode: 0770
+    owner: "{{ item.name }}"
+    group: "{{ item.group | default(item.name) }}"
   with_flattened:
     - [ { name: root } ]
     - [ baseline_users ]
