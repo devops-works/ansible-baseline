@@ -48,5 +48,12 @@
     - [ { name: root } ]
     - [ baseline_users ]
 
-
+- name: Adds 10_prompt.bash
+  template:
+    src: 10_prompt.bash.j2
+    dest: "{{'~' + item.name }}/.bashrc/10_prompt.bash"
+    mode: 0770
+  with_flattened:
+    - [ { name: root } ]
+    - [ baseline_users ]
 
