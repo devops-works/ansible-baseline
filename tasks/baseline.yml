@@ -1,0 +1,50 @@
+- name: Adds few niceties
+  apt:
+    pkg: "{{item}}"
+    state: latest
+  with_items: "{{ baseline_packages }}"
+
+- name: Changes TZ
+  copy:
+    src: "/usr/share/zoneinfo/{{ baseline_tz }}"
+    dest: /etc/localtime
+  tags: tz
+
+- name: Sets hostname
+  copy:
+    dest: /etc/hostname
+    content: "{{ inventory_hostname }}"
+
+- name: Creates required groups
+  group:
+    name: "{{ item.group | default(item.name) }}"
+  with_items: "{{ baseline_users }}"
+
+- name: Creates base users
+  user:
+    name: "{{ item.name }}"
+    group: "{{ item.group | default(item.name) }}"
+    groups: "{{ item.group | default([item.name]) | intersect(item.groups | default([])) | join(',') }}"
+    shell: /bin/bash
+  with_items: "{{ baseline_users }}"
+
+- name: Adds bash dotfile setup
+  file:
+    state: directory
+    dest: "{{'~' + item.name }}/.bash.d/"
+    mode: 0770
+  with_flattened:
+    - [ { name: 'root' } ]
+    - [ baseline_users ]
+
+- name: Adds .bashrc
+  template:
+    src: bashrc.j2
+    dest: "{{'~' + item.name }}"
+    mode: 0770
+  with_flattened:
+    - [ { name: root } ]
+    - [ baseline_users ]
+
+
+
