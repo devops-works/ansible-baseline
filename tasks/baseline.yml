@@ -30,6 +30,8 @@
     state: directory
     dest: "{{'~' + item.name }}/.bash.d/"
     mode: 0770
+    owner: "{{ item.name }}"
+    group: "{{ item.group | default([item.name]) }}"
   with_flattened:
     - [ { name: 'root' } ]
     - [ baseline_users ]
@@ -39,6 +41,8 @@
     src: bashrc.j2
     dest: "{{'~' + item.name }}/.bashrc"
     mode: 0770
+    owner: "{{ item.name }}"
+    group: "{{ item.group | default([item.name]) }}"
   with_flattened:
     - [ { name: root } ]
     - [ baseline_users ]
