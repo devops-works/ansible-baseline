@@ -40,7 +40,7 @@
 - name: Adds .bashrc
   template:
     src: bashrc.j2
-    dest: "{{'~' + item.name }}"
+    dest: "{{'~' + item.name }}/.bashrc"
     mode: 0770
   with_flattened:
     - [ { name: root } ]
