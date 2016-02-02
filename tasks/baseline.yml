@@ -12,11 +12,6 @@
     dest: /etc/localtime
   tags: tz
 
-- name: Sets hostname
-  copy:
-    dest: /etc/hostname
-    content: "{{ inventory_hostname }}"
-
 - name: Creates required groups
   group:
     name: "{{ item.group | default(item.name) }}"
