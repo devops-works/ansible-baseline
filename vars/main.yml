@@ -11,11 +11,5 @@ baseline_packages:
     - sysstat
     - vim
 
-baseline_users: []
-#baseline_users:
-#   - { name: foobar, group: foobar, groups: [ 'foo', 'bar ] }
 
-baseline_tz: Europe/Paris
-
-iftop_default_interface: "{{ ansible_interfaces.1 }}"
 
