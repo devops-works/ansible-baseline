@@ -1,0 +1,21 @@
+baseline_packages:
+    - curl
+    - ethtool
+    - htop
+    - git
+    - iftop
+    - iotop
+    - iperf
+    - nethogs
+    - ngrep
+    - sysstat
+    - vim
+
+baseline_users: []
+#baseline_users:
+#   - { name: foobar, group: foobar, groups: [ 'foo', 'bar ] }
+
+baseline_tz: Europe/Paris
+
+iftop_default_interface: "{{ ansible_interfaces.1 }}"
+
