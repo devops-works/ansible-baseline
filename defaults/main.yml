@@ -1,16 +1,5 @@
-baseline_packages:
-    - curl
-    - ethtool
-    - htop
-    - git
-    - iftop
-    - iotop
-    - iperf
-    - nethogs
-    - ngrep
-      #    - sysdig
-    - sysstat
-    - vim
+baseline_packages_addons:
+  - sysdig
 
 baseline_users: []
 #baseline_users:

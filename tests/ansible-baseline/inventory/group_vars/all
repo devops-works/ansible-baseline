@@ -1,3 +1,4 @@
+baseline_packages_addons: []
 baseline_users:
   - { name: foobar, group: foobar }
   - { name: nogroup }

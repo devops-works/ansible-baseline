@@ -2,7 +2,9 @@
   apt:
     pkg: "{{item}}"
     state: latest
-  with_items: "{{ baseline_packages }}"
+  with_items: 
+    - "{{ baseline_packages }}"
+    - "{{ baseline_packages_addons }}"
 
 - name: Changes TZ
   copy:
