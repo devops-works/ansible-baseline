@@ -7,5 +7,7 @@ baseline_users: []
 
 baseline_tz: Europe/Paris
 
+baseline_file_limit: 500000
+
 iftop_default_interface: "{{ ansible_interfaces.1 }}"
 

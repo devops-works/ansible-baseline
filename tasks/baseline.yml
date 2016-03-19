@@ -58,3 +58,8 @@
     - [ { name: root } ]
     - [ baseline_users ]
 
+- name: Adds proper file limits
+  template:
+    src: limits-file.conf.j2
+    dest: /etc/security/limits.d/filemax.conf
+
