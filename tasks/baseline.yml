@@ -7,7 +7,8 @@
     - "{{ baseline_packages_addons }}"
 
 - name: Changes TZ
-  copy:
+  file:
+    state: link
     src: "/usr/share/zoneinfo/{{ baseline_tz }}"
     dest: /etc/localtime
   tags: tz
