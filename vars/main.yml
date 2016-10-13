@@ -7,10 +7,10 @@ baseline_packages:
     - iotop
     - iperf
     - jq
+    - lm-sensors
     - nethogs
     - ngrep
     - sysstat
     - vim
-
 
 
