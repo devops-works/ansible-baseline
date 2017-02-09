@@ -2,7 +2,7 @@
   apt:
     pkg: "{{item}}"
     state: latest
-  with_items: 
+  with_items:
     - "{{ baseline_packages }}"
     - "{{ baseline_packages_addons }}"
 
@@ -35,7 +35,7 @@
     group: "{{ item.group | default(item.name) }}"
   with_flattened:
     - [ { name: 'root' } ]
-    - [ baseline_users ]
+    - [ "{{ baseline_users }}" ]
 
 - name: Adds .bashrc
   template:
@@ -46,7 +46,7 @@
     group: "{{ item.group | default(item.name) }}"
   with_flattened:
     - [ { name: root } ]
-    - [ baseline_users ]
+    - [ "{{ baseline_users }}" ]
 
 - name: Adds 10_prompt.bash
   template:
@@ -57,7 +57,7 @@
     group: "{{ item.group | default(item.name) }}"
   with_flattened:
     - [ { name: root } ]
-    - [ baseline_users ]
+    - [ "{{ baseline_users }}" ]
 
 - name: Adds proper file limits
   template:
