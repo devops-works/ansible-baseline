@@ -12,6 +12,8 @@
     src: "/usr/share/zoneinfo/{{ baseline_tz }}"
     dest: /etc/localtime
   tags: tz
+  notify:
+    - Restart rsyslogd
 
 - name: Creates required groups
   group:
