@@ -1,5 +1,7 @@
 baseline_packages:
+    - apt-transport-https
     - curl
+    - dstat
     - ethtool
     - htop
     - git
