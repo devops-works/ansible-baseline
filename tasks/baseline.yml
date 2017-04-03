@@ -11,7 +11,7 @@
     state: link
     src: "/usr/share/zoneinfo/{{ baseline_tz }}"
     dest: /etc/localtime
-  tags: tz
+    tags: ["tz","baseline:tz"]
   notify:
     - Restart rsyslogd
 
@@ -66,3 +66,9 @@
     src: limits-file.conf.j2
     dest: /etc/security/limits.d/filemax.conf
 
+    #- name: Adds auto whitelisting profile script
+    #  template:
+    #    src: auto_whitelist.sh.j2
+    #    dest: /etc/profile.d/auto_whitelist.sh
+    #    mode: 0770
+    #

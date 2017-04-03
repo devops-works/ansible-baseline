@@ -1,1 +1,3 @@
-- include: baseline.yml tags=baseline
+- include: baseline.yml
+  tags
+    - baseline
