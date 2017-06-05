@@ -11,6 +11,7 @@
     state: link
     src: "/usr/share/zoneinfo/{{ baseline_tz }}"
     dest: /etc/localtime
+    force: yes
   tags: ["tz","baseline:tz"]
   notify:
     - Restart rsyslogd
