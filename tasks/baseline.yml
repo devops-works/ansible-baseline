@@ -1,7 +1,7 @@
 - name: Adds few niceties
   apt:
-    pkg: "{{item}}"
-    state: latest
+    pkg: "{{ item }}"
+    state: present
   with_items:
     - "{{ baseline_packages }}"
     - "{{ baseline_packages_addons }}"
