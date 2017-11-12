@@ -27,6 +27,7 @@
     password: "{{ item.password | default(omit) }}"
     group: "{{ item.group | default(item.name) }}"
     groups: "{{ item.group | default([item.name]) | intersect(item.groups | default([])) | join(',') }}"
+    append: yes
     shell: /bin/bash
     update_password: on_create
   with_items: "{{ baseline_users }}"
