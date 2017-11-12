@@ -24,9 +24,11 @@
 - name: Creates base users
   user:
     name: "{{ item.name }}"
+    password: "{{ item.password | default(omit) }}"
     group: "{{ item.group | default(item.name) }}"
     groups: "{{ item.group | default([item.name]) | intersect(item.groups | default([])) | join(',') }}"
     shell: /bin/bash
+    on_create: true
   with_items: "{{ baseline_users }}"
 
 - name: Adds bash dotfile setup
