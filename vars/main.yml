@@ -15,7 +15,5 @@ baseline_packages:
     - ngrep
     - sysstat
     - vim
-    - language-pack-fr-base
-    - bmon
-    - dns-utils
-    - iptraf
+
+
