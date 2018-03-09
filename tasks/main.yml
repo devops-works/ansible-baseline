@@ -1,3 +1,7 @@
 - include: baseline.yml
   tags:
     - baseline
+
+- include: passwd-init.yml
+  tags:
+    - baseline
