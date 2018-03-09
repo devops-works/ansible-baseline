@@ -1,0 +1,15 @@
+- name: Install passwd-init script
+  template:
+    src: passwd-init.j2
+    dest: /usr/local/sbin/passwd-init
+    mode: 0755
+    group: root
+    owner: root
+
+- name: install sudoers config to run passwd-init without password
+  template:
+    src: 20-passwd-init.j2
+    dest: /etc/sudoers.d/20-passwd-init
+    mode: 0440
+    group: root
+    owner: root
