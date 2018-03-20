@@ -26,7 +26,7 @@
     name: "{{ item.name }}"
     password: "{{ item.password | default(omit) }}"
     group: "{{ item.group | default(item.name) }}"
-    groups: "{{ item.groups }}"
+    groups: "{{ item.groups | default([]) | union([item.group | default(item.name)]) | unique }}"
     append: yes
     shell: /bin/bash
     update_password: on_create
