@@ -19,3 +19,4 @@ baseline_packages:
     - bmon
     - iptraf
     - language-pack-fr-base
+    - ncdu
