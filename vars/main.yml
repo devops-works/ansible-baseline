@@ -21,3 +21,5 @@ baseline_packages:
     - language-pack-fr-base
     - ncdu
     - ifupdown
+    - bmon
+    - httpie
