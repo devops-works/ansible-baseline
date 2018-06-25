@@ -20,3 +20,7 @@ baseline_packages:
     - iptraf
     - language-pack-fr-base
     - ncdu
+    - ifupdown
+    - httpie
+    - moreutils
+    - nmon
