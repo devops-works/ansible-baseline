@@ -22,3 +22,5 @@ baseline_packages:
     - ncdu
     - ifupdown
     - httpie
+    - moreutils
+    - nmon
