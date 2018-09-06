@@ -1,5 +1,5 @@
 - name: Upgrade System Packages
-  apt: force=yes update_cache=yes upgrade=yes
+  apt: force=yes update_cache=yes
   register: uu_system_updated
 
 - name: Install System Packages
