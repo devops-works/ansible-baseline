@@ -1,0 +1,4 @@
+APT::Periodic::Update-Package-Lists "{{ uu_update_package_lists|default('1') }}";
+APT::Periodic::Download-Upgradeable-Packages "{{ uu_download_upgradeable_packages|default('1') }}";
+APT::Periodic::AutocleanInterval "{{ uu_autoclean_interval|default('7') }}";
+APT::Periodic::Unattended-Upgrade "{{ uu_unattended_upgrade|default('1') }}";
