@@ -14,3 +14,21 @@ baseline_file_limit: 500000
 
 iftop_default_interface: "{{ ansible_interfaces.1 }}"
 
+# Unattended upgrades
+## general config used in uu_config.j2
+
+uu_system_packages:
+  - unattended-upgrades
+
+uu_reboot: false
+uu_send_email: true
+uu_email_to: root
+uu_email_on_error_only: false
+
+## Scheduling Controls
+### used in uu_periodic.j2
+
+uu_update_package_lists: 1
+uu_download_upgradeable_packages: 1
+uu_autoclean_interval: 7
+uu_unattended_upgrade: 1
