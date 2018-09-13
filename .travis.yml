@@ -18,8 +18,5 @@ script:
   # Run tests.
   - ${PWD}/tests/test.sh
 
-  # Ensure Java is installed.
-  - 'docker exec --tty ${container_id} env TERM=xterm which java'
-
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
