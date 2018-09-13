@@ -5,3 +5,9 @@
 - include: passwd-init.yml
   tags:
     - baseline
+
+- include: unattended-upgrades.yml
+  tags:
+    - baseline
+    - unattendedupgrades
+    - uu
