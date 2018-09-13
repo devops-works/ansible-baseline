@@ -1,19 +1,17 @@
-- name: Update System Packages
-  apt: force=yes update_cache=yes
-  register: uu_system_updated
-
 - name: Install System Packages
-  when: uu_system_updated is success
-  apt: pkg={{ item }} state=present force=yes
+  apt:
+    pkg: "{{ item }}"
+    state: present
   with_items: "{{ uu_system_packages }}"
 
 - name: Place unattended upgrades config files
-  template: >
-    src={{ item.src }}
-    dest={{ item.dest }}
-    owner=root
-    group=root
-    mode=0600
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: root
+    mode: 0600
   with_items:
     - { src: uu_config.j2, dest: /etc/apt/apt.conf.d/50unattended-upgrades }
     - { src: uu_periodic.j2, dest: /etc/apt/apt.conf.d/02periodic }
+
