@@ -12,7 +12,7 @@ script:
   - export cleanup=false
 
   # Download test shim.
-  - wget -O ${PWD}/tests/test.sh https://gist.githubusercontent.com/geerlingguy/73ef1e5ee45d8694570f334be385e181/raw/
+  - wget -O ${PWD}/tests/test.sh https://gist.githubusercontent.com/leucos/b64ada597fa7281bab4620cd56f6fa46/raw/2dc8100bab92da745c7a7b38990df2a3546048d0/ansible-role-test.sh
   - chmod +x ${PWD}/tests/test.sh
 
   # Run tests.
