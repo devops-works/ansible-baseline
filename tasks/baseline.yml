@@ -6,6 +6,14 @@
     - "{{ baseline_packages }}"
     - "{{ baseline_packages_addons }}"
 
+- name: Adds packages for Ubuntu
+  apt:
+    pkg: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ ubuntu_only_packages }}"
+  when: ansible_distribution == 'Ubuntu'
+
 - name: Changes TZ
   file:
     state: link
