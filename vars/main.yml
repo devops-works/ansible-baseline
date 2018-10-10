@@ -24,5 +24,8 @@ baseline_packages:
     - moreutils
     - nmon
 
-ubuntu_only_packages:
-    - language-pack-fr-base
+baseline_distribution_specific:
+    Ubuntu:
+      - language-pack-fr-base
+    Debian:
+      - at
