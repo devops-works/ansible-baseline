@@ -6,6 +6,13 @@
     - "{{ baseline_packages }}"
     - "{{ baseline_packages_addons }}"
 
+- name: Adds distribution specific packages 
+  apt:
+    pkg: "{{ item.value }}"
+    state: present
+  when: ansible_distribution == item.key | lower
+  with_dict: "{{ baseline_distribution_specific }}"
+
 - name: Changes TZ
   file:
     state: link

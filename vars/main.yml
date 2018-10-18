@@ -18,9 +18,14 @@ baseline_packages:
     - dnsutils
     - bmon
     - iptraf
-    - language-pack-fr-base
     - ncdu
     - ifupdown
     - httpie
     - moreutils
     - nmon
+
+baseline_distribution_specific:
+    Ubuntu:
+      - language-pack-fr-base
+    Debian:
+      - at
