@@ -10,7 +10,7 @@
   apt:
     pkg: "{{ item.value }}"
     state: present
-  when: ansible_distribution == item.key | lower
+  when: ansible_distribution | lower  == item.key
   with_dict: "{{ baseline_distribution_specific }}"
 
 - name: Changes TZ
