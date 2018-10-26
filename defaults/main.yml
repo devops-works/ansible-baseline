@@ -1,5 +1,4 @@
 baseline_packages_addons:
-  - sysdig
 
 baseline_users: []
 #baseline_users:

@@ -1,8 +1,7 @@
 - name: Install System Packages
   apt:
-    pkg: "{{ item }}"
+    pkg: "{{ uu_system_packages }}"
     state: present
-  with_items: "{{ uu_system_packages }}"
 
 - name: Place unattended upgrades config files
   template:
