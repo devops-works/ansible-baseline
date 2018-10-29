@@ -23,6 +23,7 @@ baseline_packages:
     - httpie
     - moreutils
     - nmon
+    - sysdig
 
 baseline_distribution_specific:
     Ubuntu:
