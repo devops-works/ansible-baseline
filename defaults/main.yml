@@ -23,6 +23,7 @@ uu_reboot: false
 uu_send_email: true
 uu_email_to: root
 uu_email_on_error_only: false
+uu_activate: false
 
 ## Scheduling Controls
 ### used in uu_periodic.j2
