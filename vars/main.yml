@@ -25,6 +25,7 @@ baseline_packages:
     - nmon
     - sysdig
     - python-apt
+    - tcpdump
 
 baseline_distribution_specific:
     Ubuntu:
