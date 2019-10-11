@@ -24,6 +24,7 @@ baseline_packages:
     - moreutils
     - nmon
     - sysdig
+    - python-apt
     - tcpdump
 
 baseline_distribution_specific:
