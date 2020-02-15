@@ -23,12 +23,12 @@ baseline_packages:
     - httpie
     - moreutils
     - nmon
-    - sysdig
     - python-apt
     - tcpdump
 
 baseline_distribution_specific:
     Ubuntu:
       - language-pack-fr-base
+      - sysdig
     Debian:
       - at
