@@ -11,6 +11,8 @@ baseline_file_limit: 500000
 # baseline_whitelist_chain: INPUT
 # baseline_whitelist: False
 
+bash_prompt_text: REMOTE
+
 iftop_default_interface: "{{ ansible_interfaces.1 }}"
 
 # Unattended upgrades
