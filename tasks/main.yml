@@ -1,12 +1,12 @@
-- include: baseline.yml
+- include_tasks: baseline.yml
   tags:
     - baseline
 
-- include: passwd-init.yml
+- include_tasks: passwd-init.yml
   tags:
     - baseline
 
-- include: unattended-upgrades.yml
+- include_tasks: unattended-upgrades.yml
   tags:
     - baseline
     - unattendedupgrades
