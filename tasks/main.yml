@@ -1,14 +1,20 @@
-- include_tasks: baseline.yml
-  tags:
-    - baseline
+- include_tasks: 
+    file: baseline.yml
+    apply:
+      tags:
+        - baseline
 
-- include_tasks: passwd-init.yml
-  tags:
-    - baseline
+- include_tasks: 
+    file: passwd-init.yml
+    apply:
+    tags:
+      - baseline
 
-- include_tasks: unattended-upgrades.yml
-  tags:
-    - baseline
-    - unattendedupgrades
-    - uu
+- include_tasks:
+    file: unattended-upgrades.yml
+    apply:
+      tags:
+        - baseline
+        - unattendedupgrades
+        - uu
   when: uu_activate
