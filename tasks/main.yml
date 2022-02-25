@@ -5,15 +5,15 @@
       tags:
         - baseline
   tags:
-    - always
+    - baseline
 
 - include_tasks: 
     file: passwd-init.yml
     apply:
-    tags:
-      - baseline
+      tags:
+        - baseline
   tags:
-    - always
+    - baseline
 
 - include_tasks:
     file: unattended-upgrades.yml
@@ -24,4 +24,6 @@
         - uu
   when: uu_activate
   tags:
-    - always
+    - baseline
+    - unattendedupgrades
+    - uu
