@@ -26,7 +26,7 @@
   apt:
     pkg: sudo
     state: present
-  tags: ["packages"]
+  tags: ["packages","sudo"]
 
 - name: Changes TZ
   file:
@@ -96,6 +96,7 @@
     dest: /etc/sudoers.d/{{ item.name }}
   loop: "{{ baseline_users }}"
   when: "'passwordless_sudo' in item and item.passwordless_sudo"
+  tags: ["sudo"]
 
 - name: Removes passwordless sudo capability if not needed
   file:
@@ -103,3 +104,4 @@
     state: absent
   loop: "{{ baseline_users }}"
   when: "'passwordless_sudo' not in item or not item.passwordless_sudo"
+  tags: ["sudo"]
