@@ -2,7 +2,7 @@
 
 | Branch        | Status          |
 | :-----------: | :-------------: |
-| [master](https://github.com/devops-works/ansible-baseline) | ![Build status](https://github.com/devops-works/ansible-baseline/actions/workflows/main.yml/badge.svg) |
+| [master](https://github.com/devops-works/ansible-baseline) | ![Build status](https://github.com/devops-works/ansible-baseline/actions/workflows/test.yml/badge.svg) |
 
 ## Summary
 
