@@ -1,0 +1,13 @@
+baseline_users:
+  - name: foo
+    group: foo
+    groups:
+      - sudo
+  - name: bar
+    passwordless_sudo: true
+    group: bar
+    groups:
+      - sudo
+
+bash_prompt_text: "SERVER"
+

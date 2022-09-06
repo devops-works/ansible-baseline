@@ -22,6 +22,7 @@ baseline_packages:
     - ngrep
     - nmon
     - python3-apt
+    - rsyslog
     - sysstat
     - tcpdump
     - vim
