@@ -23,6 +23,4 @@ jobs:
           molecule --version
       - name: Test with molecule
         run: |
-          pwd
-          ls
           molecule test
