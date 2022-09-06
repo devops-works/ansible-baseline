@@ -1,19 +1,32 @@
-- name: Adds few niceties
+- name: Creates __all_users fact containing declared users + root
+  set_fact:
+    __all_users: "{{ [ { 'name': 'root' } ] | community.general.lists_mergeby(baseline_users, 'name') | flatten }}"
+
+- name: Adds baseline packages
   apt:
     pkg: "{{ baseline_packages }}"
     state: present
+  tags: ["packages"]
 
-- name: Adds few addons
+- name: Adds requested additional packages
   apt:
     pkg: "{{ baseline_packages_addons }}"
     state: present
+  tags: ["packages"]
 
 - name: Adds distribution specific packages 
   apt:
     pkg: "{{ item.value }}"
     state: present
-  when: ansible_distribution | lower  == item.key
-  with_dict: "{{ baseline_distribution_specific }}"
+  when: ansible_distribution | lower == item.key
+  loop: "{{ baseline_distribution_specific |dict2items }}"
+  tags: ["packages"]
+
+- name: Adds sudo package 
+  apt:
+    pkg: sudo
+    state: present
+  tags: ["packages"]
 
 - name: Changes TZ
   file:
@@ -28,7 +41,7 @@
 - name: Creates required groups
   group:
     name: "{{ item.group | default(item.name) }}"
-  with_items: "{{ baseline_users }}"
+  loop: "{{ baseline_users }}"
 
 - name: Creates base users
   user:
@@ -39,7 +52,7 @@
     append: yes
     shell: /bin/bash
     update_password: on_create
-  with_items: "{{ baseline_users }}"
+  loop: "{{ baseline_users }}"
 
 - name: Adds bash dotfile setup
   file:
@@ -48,9 +61,11 @@
     mode: 0770
     owner: "{{ item.name }}"
     group: "{{ item.group | default(item.name) }}"
-  with_flattened:
-    - [ { name: 'root' } ]
-    - [ "{{ baseline_users }}" ]
+  loop: "{{ __all_users }}"
+
+  # with_flattened:
+  #   - [ { name: 'root' } ]
+  #   - [ "{{ baseline_users }}" ]
 
 - name: Adds .bashrc
   template:
@@ -59,9 +74,7 @@
     mode: 0770
     owner: "{{ item.name }}"
     group: "{{ item.group | default(item.name) }}"
-  with_flattened:
-    - [ { name: root } ]
-    - [ "{{ baseline_users }}" ]
+  loop: "{{ __all_users }}"
 
 - name: Adds 10_prompt.bash
   template:
@@ -70,18 +83,23 @@
     mode: 0770
     owner: "{{ item.name }}"
     group: "{{ item.group | default(item.name) }}"
-  with_flattened:
-    - [ { name: root } ]
-    - [ "{{ baseline_users }}" ]
+  loop: "{{ __all_users }}"
 
 - name: Adds proper file limits
   template:
     src: limits-file.conf.j2
     dest: /etc/security/limits.d/filemax.conf
 
-    #- name: Adds auto whitelisting profile script
-    #  template:
-    #    src: auto_whitelist.sh.j2
-    #    dest: /etc/profile.d/auto_whitelist.sh
-    #    mode: 0770
-    #
+- name: Adds passwordless sudo capability if needed
+  template:
+    src: passwordless_sudo.j2
+    dest: /etc/sudoers.d/{{ item.name }}
+  loop: "{{ baseline_users }}"
+  when: "'passwordless_sudo' in item and item.passwordless_sudo"
+
+- name: Removes passwordless sudo capability if not needed
+  file:
+    path: /etc/sudoers.d/{{ item.name }}
+    state: absent
+  loop: "{{ baseline_users }}"
+  when: "'passwordless_sudo' not in item or not item.passwordless_sudo"

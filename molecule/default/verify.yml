@@ -1,0 +1,13 @@
+---
+# This is an example playbook to execute Ansible tests.
+
+- name: Verify
+  hosts: all
+  gather_facts: false
+  tasks:
+
+  - name: Assert users exist
+    getent:
+      database: passwd
+      key: "{{ item.name }}"
+    loop: "{{ baseline_users }}"

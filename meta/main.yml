@@ -4,13 +4,17 @@ dependencies: []
 
 galaxy_info:
   author: Michel Blanc
+  namespace: dw
   company: devops.works
   description: ansible-baseline role
   license: MIT
-  min_ansible_version: 1.6
+  min_ansible_version: "1.12"
   platforms:
   - name: Ubuntu
     versions:
     - all
-  categories:
-  - system
+  - name: Debian
+    versions:
+    - all
+  galaxy_tags:
+    - system
