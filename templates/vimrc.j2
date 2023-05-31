@@ -1,0 +1,41 @@
+" Enable filetype plugins
+filetype plugin on
+filetype indent on
+
+" Edit files inplace
+" Useful when editing docker-mounted files
+set backup
+set backupcopy=yes
+set writebackup
+
+" Enable syntax highlighting
+syntax enable
+
+" Highlight search results
+set hlsearch
+
+" Makes search act like search in modern browsers
+set incsearch
+
+" Show matching brackets when text indicator is over them
+set showmatch
+
+" How many tenths of a second to blink when matching brackets
+set mat=2
+
+" No annoying sound on errors
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
+
+" :W sudo saves the file
+" (useful for handling the permission-denied error)
+command W w !sudo tee % > /dev/null
+
+" Use spaces instead of tabs
+set expandtab
+
+" 1 tab == 4 spaces
+set shiftwidth=4
+set tabstop=4

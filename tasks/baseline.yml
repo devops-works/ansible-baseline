@@ -71,7 +71,7 @@
   template:
     src: bashrc.j2
     dest: "{{'~' + item.name }}/.bashrc"
-    mode: 0770
+    mode: 0750
     owner: "{{ item.name }}"
     group: "{{ item.group | default(item.name) }}"
   loop: "{{ __all_users }}"
@@ -80,7 +80,16 @@
   template:
     src: 10_prompt.bash.j2
     dest: "{{'~' + item.name }}/.bash.d/10_prompt.bash"
-    mode: 0770
+    mode: 0750
+    owner: "{{ item.name }}"
+    group: "{{ item.group | default(item.name) }}"
+  loop: "{{ __all_users }}"
+
+- name: Adds .vimrc
+  template:
+    src: vimrc.j2
+    dest: "{{'~' + item.name }}/.vimrc"
+    mode: 0750
     owner: "{{ item.name }}"
     group: "{{ item.group | default(item.name) }}"
   loop: "{{ __all_users }}"
