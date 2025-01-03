@@ -1,10 +1,11 @@
+---
 - name: Install System Packages
-  apt:
+  ansible.builtin.apt:
     pkg: "{{ uu_system_packages }}"
     state: present
 
 - name: Place unattended upgrades config files
-  template:
+  ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     owner: root
@@ -13,4 +14,3 @@
   with_items:
     - { src: uu_config.j2, dest: /etc/apt/apt.conf.d/50unattended-upgrades }
     - { src: uu_periodic.j2, dest: /etc/apt/apt.conf.d/02periodic }
-

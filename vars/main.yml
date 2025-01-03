@@ -1,35 +1,36 @@
+---
 baseline_packages:
-    - apt-transport-https
-    - at
-    - bmon
-    - curl
-    - dnsutils
-    - dstat
-    - ethtool
-    - git
-    - htop
-    - httpie
-    - iftop
-    - ifupdown
-    - iotop
-    - iperf
-    - iptraf
-    - jq
-    - lm-sensors
-    - moreutils
-    - ncdu
-    - nethogs
-    - ngrep
-    - nmon
-    - python3-apt
-    - rsyslog
-    - sysstat
-    - tcpdump
-    - vim
+  - apt-transport-https
+  - at
+  - bmon
+  - curl
+  - dnsutils
+  - dstat
+  - ethtool
+  - git
+  - htop
+  - httpie
+  - iftop
+  - ifupdown
+  - iotop
+  - iperf
+  - iptraf
+  - jq
+  - lm-sensors
+  - moreutils
+  - ncdu
+  - nethogs
+  - ngrep
+  - nmon
+  - python3-apt
+  - rsyslog
+  - sysstat
+  - tcpdump
+  - vim
 
 baseline_distribution_specific:
-    Ubuntu:
-      - language-pack-fr-base
-      - sysdig
-    Debian:
-      - at
+  Ubuntu:
+    - language-pack-fr-base
+    - sysdig
+  Debian:
+    - at

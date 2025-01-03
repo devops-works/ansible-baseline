@@ -1,5 +1,6 @@
 ---
-- include_tasks: 
+- name: Base tasks
+  ansible.builtin.include_tasks: 
     file: baseline.yml
     apply:
       tags:
@@ -7,7 +8,8 @@
   tags:
     - baseline
 
-- include_tasks: 
+- name: PAssword initialization tasks
+  ansible.builtin.include_tasks: 
     file: passwd-init.yml
     apply:
       tags:
@@ -15,7 +17,8 @@
   tags:
     - baseline
 
-- include_tasks:
+- name: Auto upgrade tasks
+  ansible.builtin.include_tasks:
     file: unattended-upgrades.yml
     apply:
       tags:

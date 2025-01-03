@@ -1,21 +1,22 @@
+---
 - name: Creates __all_users fact containing declared users + root
-  set_fact:
+  ansible.builtin.set_fact:
     __all_users: "{{ [ { 'name': 'root' } ] | community.general.lists_mergeby(baseline_users, 'name') | flatten }}"
 
 - name: Adds baseline packages
-  apt:
+  ansible.builtin.apt:
     pkg: "{{ baseline_packages }}"
     state: present
   tags: ["packages"]
 
 - name: Adds requested additional packages
-  apt:
+  ansible.builtin.apt:
     pkg: "{{ baseline_packages_addons }}"
     state: present
   tags: ["packages"]
 
 - name: Adds distribution specific packages 
-  apt:
+  ansible.builtin.apt:
     pkg: "{{ item.value }}"
     state: present
   when: ansible_distribution | lower == item.key
@@ -23,28 +24,28 @@
   tags: ["packages"]
 
 - name: Adds sudo package 
-  apt:
+  ansible.builtin.apt:
     pkg: sudo
     state: present
-  tags: ["packages","sudo"]
+  tags: ["packages", "sudo"]
 
 - name: Changes TZ
-  file:
+  ansible.builtin.file:
     state: link
     src: "/usr/share/zoneinfo/{{ baseline_tz }}"
     dest: /etc/localtime
     force: yes
-  tags: ["tz","baseline:tz"]
+  tags: ["tz", "baseline:tz"]
   notify:
     - Restart rsyslogd
 
 - name: Creates required groups
-  group:
+  ansible.builtin.group:
     name: "{{ item.group | default(item.name) }}"
   loop: "{{ baseline_users }}"
 
 - name: Creates base users
-  user:
+  ansible.builtin.user:
     name: "{{ item.name }}"
     password: "{{ item.password | default(omit) }}"
     group: "{{ item.group | default(item.name) }}"
@@ -55,7 +56,7 @@
   loop: "{{ baseline_users }}"
 
 - name: Adds bash dotfile setup
-  file:
+  ansible.builtin.file:
     state: directory
     dest: "{{'~' + item.name }}/.bash.d/"
     mode: 0770
@@ -68,7 +69,7 @@
   #   - [ "{{ baseline_users }}" ]
 
 - name: Adds .bashrc
-  template:
+  ansible.builtin.template:
     src: bashrc.j2
     dest: "{{'~' + item.name }}/.bashrc"
     mode: 0750
@@ -77,7 +78,7 @@
   loop: "{{ __all_users }}"
 
 - name: Adds 10_prompt.bash
-  template:
+  ansible.builtin.template:
     src: 10_prompt.bash.j2
     dest: "{{'~' + item.name }}/.bash.d/10_prompt.bash"
     mode: 0750
@@ -86,7 +87,7 @@
   loop: "{{ __all_users }}"
 
 - name: Adds .vimrc
-  template:
+  ansible.builtin.template:
     src: vimrc.j2
     dest: "{{'~' + item.name }}/.vimrc"
     mode: 0750
@@ -95,12 +96,12 @@
   loop: "{{ __all_users }}"
 
 - name: Adds proper file limits
-  template:
+  ansible.builtin.template:
     src: limits-file.conf.j2
     dest: /etc/security/limits.d/filemax.conf
 
 - name: Adds passwordless sudo capability if needed
-  template:
+  ansible.builtin.template:
     src: passwordless_sudo.j2
     dest: /etc/sudoers.d/{{ item.name }}
   loop: "{{ baseline_users }}"
@@ -108,7 +109,7 @@
   tags: ["sudo"]
 
 - name: Removes passwordless sudo capability if not needed
-  file:
+  ansible.builtin.file:
     path: /etc/sudoers.d/{{ item.name }}
     state: absent
   loop: "{{ baseline_users }}"

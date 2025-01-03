@@ -1,5 +1,6 @@
+---
 - name: Install passwd-init script
-  template:
+  ansible.builtin.template:
     src: passwd-init.j2
     dest: /usr/local/sbin/passwd-init
     mode: 0755
@@ -7,7 +8,7 @@
     owner: root
 
 - name: install sudoers config to run passwd-init without password
-  template:
+  ansible.builtin.template:
     src: 20-passwd-init.j2
     dest: /etc/sudoers.d/20-passwd-init
     mode: 0440
