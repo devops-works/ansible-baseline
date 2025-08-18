@@ -9,7 +9,7 @@ set backupcopy=yes
 set writebackup
 
 " Enable syntax highlighting
-syntax enable
+" syntax enable
 
 " Highlight search results
 set hlsearch
@@ -31,7 +31,8 @@ set tm=500
 
 " :W sudo saves the file
 " (useful for handling the permission-denied error)
-command W w !sudo tee % > /dev/null
+" commented out since often already defined
+" command W w !sudo tee % > /dev/null
 
 " Use spaces instead of tabs
 set expandtab
@@ -39,3 +40,6 @@ set expandtab
 " 1 tab == 4 spaces
 set shiftwidth=4
 set tabstop=4
+
+" disable mouse GUI support
+set mouse -=a
