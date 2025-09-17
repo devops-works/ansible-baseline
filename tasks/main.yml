@@ -8,7 +8,7 @@
   tags:
     - baseline
 
-- name: PAssword initialization tasks
+- name: Password initialization tasks
   ansible.builtin.include_tasks: 
     file: passwd-init.yml
     apply:
