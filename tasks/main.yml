@@ -6,7 +6,7 @@
       tags:
         - baseline
   tags:
-    - baseline
+    - always
 
 - name: Password initialization tasks
   ansible.builtin.include_tasks: 
@@ -15,7 +15,7 @@
       tags:
         - baseline
   tags:
-    - baseline
+    - always
 
 - name: Auto upgrade tasks
   ansible.builtin.include_tasks:
@@ -27,6 +27,4 @@
         - uu
   when: uu_activate
   tags:
-    - baseline
-    - unattendedupgrades
-    - uu
+    - always
