@@ -19,8 +19,8 @@
   ansible.builtin.apt:
     pkg: "{{ item.value }}"
     state: present
-  when: ansible_distribution | lower == item.key
-  loop: "{{ baseline_distribution_specific |dict2items }}"
+  when: (ansible_facts["distribution"] | lower) == (item.key | lower)
+  loop: "{{ baseline_distribution_specific | dict2items }}"
   tags: ["packages"]
 
 - name: Adds sudo package 
