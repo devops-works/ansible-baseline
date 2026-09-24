@@ -3,9 +3,9 @@ baseline_packages:
   - apt-transport-https
   - at
   - bmon
+  - bpftrace
   - curl
   - dnsutils
-  - dstat
   - ethtool
   - git
   - htop
@@ -20,12 +20,14 @@ baseline_packages:
   - moreutils
   - ncdu
   - nethogs
+  - netstat
   - ngrep
   - nmon
   - python3-apt
   - rsyslog
   - sysstat
   - tcpdump
+  - telnet
   - vim
 
 baseline_distribution_specific:
