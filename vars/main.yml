@@ -19,8 +19,8 @@ baseline_packages:
   - lm-sensors
   - moreutils
   - ncdu
+  - net-tools
   - nethogs
-  - netstat
   - ngrep
   - nmon
   - python3-apt
